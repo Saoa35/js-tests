@@ -21,6 +21,20 @@ describe("CartParser - unit tests", () => {
   });
 });
 
+describe("readFile", () => {
+  it("should return file data", () => {
+    const fileData = parser.readFile("./samples/cart.csv");
+    expect(typeof fileData).toBe("string");
+  });
+  it("should throw an Error, when path is empty", () => {
+    expect(() => parser.parse("")).toThrow();
+  });
+
+  it("should throw an Error, when path is incorrect", () => {
+    expect(() => parser.parse("random/path/file.csv")).toThrow();
+  });
+});
+
 describe("CartParser - integration test", () => {
   // Add your integration test here.
 });
