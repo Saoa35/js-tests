@@ -35,6 +35,22 @@ describe("readFile", () => {
   });
 });
 
+describe("validate", () => {
+  it("should return an empty array, if the content is valid", () => {
+    const contents = parser.readFile("./samples/cart.csv");
+    const errors = parser.validate(contents);
+    expect(errors.length).toBe(0);
+  });
+  it("should throw an Error, if the content is empty", () => {
+    expect(() => parser.validate("")).toThrow();
+  });
+
+  it("should throw an Error, if the content is invalid", () => {
+    const errors = parser.validate("some random content");
+    expect(errors.length).toBeGreaterThan(0);
+  });
+});
+
 describe("CartParser - integration test", () => {
   // Add your integration test here.
 });
