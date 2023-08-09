@@ -1,4 +1,5 @@
 import CartParser from "./CartParser";
+import mockData from "../samples/cart.json";
 
 let parser;
 
@@ -78,4 +79,11 @@ describe("CartParser - unit tests", () => {
 
 describe("CartParser - integration test", () => {
   // Add your integration test here.
+  describe("validate", () => {
+    it("should return error for incorrect header, types and num of columns", () => {
+      const contents = parser.readFile("./samples/brokenCart.csv");
+      const errors = parser.validate(contents);
+      expect(errors.length).toBe(4);
+    });
+  });
 });
