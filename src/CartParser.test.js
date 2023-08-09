@@ -51,6 +51,18 @@ describe("validate", () => {
   });
 });
 
+describe("calcTotal", () => {
+  it("should calculate total price of cart", () => {
+    const total = parser.calcTotal(mockData.items);
+    expect(total).toBeCloseTo(mockData.total);
+  });
+
+  it("should return 0, if there are no items", () => {
+    const total = parser.calcTotal([]);
+    expect(total).toBe(0);
+  });
+});
+
 describe("CartParser - integration test", () => {
   // Add your integration test here.
 });
